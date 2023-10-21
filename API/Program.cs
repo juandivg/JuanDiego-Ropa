@@ -2,6 +2,7 @@ using System.Reflection;
 using API.Extensions;
 using AspNetCoreRateLimit;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,34 @@ builder.Services.ConfigureApiVersioning();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
+builder.Services.AddSwaggerGen(c =>
+{
+    c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); // Use First() as a workaround
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Veterinaria", Version = "v1" });
+    // var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    // var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    // c.IncludeXmlComments(xmlPath);
+    // c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    // {
+    //     In = ParameterLocation.Header,
+    //     Description = "Please insert token",
+    //     Name = "Authorization",
+    //     Type = SecuritySchemeType.Http,
+    //     BearerFormat = "JWT",
+    //     Scheme = "bearer"
+    // });
+    // c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    // {{
+    //     new OpenApiSecurityScheme{
+    //         Reference= new OpenApiReference{
+    //             Type = ReferenceType.SecurityScheme,
+    //             Id ="Bearer"
+    //         }
+    //     },
+    //     new string[]{}
+    // }
+    // });
+});
 builder.Services.AddDbContext<RopaContext>(options =>
 {
     string connectionString = builder.Configuration.GetConnectionString("ConexMysql");

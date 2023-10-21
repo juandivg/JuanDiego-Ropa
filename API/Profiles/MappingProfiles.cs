@@ -18,6 +18,10 @@ namespace API.Profiles
             CreateMap<Prenda,InsumosxPrendaDto>().ReverseMap();
             CreateMap<Orden,OrdenDto>().ReverseMap();
             CreateMap<Empleado,EmpleadoDto>().ReverseMap();
+            CreateMap<Talla,TallaDto>().ReverseMap();
+            CreateMap<Inventario,InventarioDto>().ReverseMap();
+            CreateMap<InventarioTalla,InventarioTallaDto>().ReverseMap();
+            CreateMap<Venta,VentaDto>().ReverseMap();
         }
     }
 }

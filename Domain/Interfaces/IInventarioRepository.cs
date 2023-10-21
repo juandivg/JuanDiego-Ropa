@@ -8,6 +8,6 @@ namespace Domain.Interfaces
 {
     public interface IInventarioRepository:IGenericRepository<Inventario>
     {
-        
+        Task<IEnumerable<Inventario>> GetInventariosxTallas();
     }
 }

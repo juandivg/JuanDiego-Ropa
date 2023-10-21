@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace API.Dtos
 {
-    public class PrendaxInventarioDto
+    public class InventarioDto
     {
         public int Id { get; set; }
-        public string Nombre { get; set; }
+        public PrendaxInventarioDto Prenda { get; set; }
+        public List<InventarioTallaDto> InventarioTallas { get; set; }
     }
 }
